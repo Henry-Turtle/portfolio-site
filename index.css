@@ -1,0 +1,628 @@
+/**Setup*/
+:root{
+    --blue: #35A7FF;
+    --red: #FF5964;
+    --yellow: #FFE74C;
+    --green: #6BF178;
+    --break-size: 50px;
+    --icon-height: 10vh;
+}
+
+@font-face {
+    font-family: signika-negative;
+    src: url(/fonts/Signika-Regular.ttf);
+}
+
+*{
+    font-family: signika-negative;
+}
+ 
+html, body{
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
+    background-color: #1B1B1F;
+    height: 100vh;
+    width: 100vw;
+    overflow: scroll;
+    display: flex;
+    flex-direction: row;
+}
+
+button{
+    cursor: pointer;
+    border: none;
+}
+
+.yellow{
+    color: var(--yellow)
+}
+.blue{
+    color: var(--blue)
+}
+.red{
+    color: var(--red)
+}
+.green{
+    color: var(--green)
+}
+.white{
+    color: white;
+}
+.center{
+    text-align: center;
+}
+.noselect{
+    user-select: none;
+}
+
+
+#website{
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    width: 100vw;
+    height: 100vh;
+    scroll-behavior: smooth;
+}
+
+.page{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    scroll-snap-align: start;
+}
+
+.break{
+    width: 100%;
+    height: var(--break-size)
+}
+
+/*!THIS IS THE NEW DESIGN START*/
+#home{
+    display: grid;
+    grid-template-rows: 176fr 60fr 120fr 120fr 40fr; /** Name, media icons, sections1, sections2, bottom spacing*/
+    grid-template-columns: 15fr 310fr 350fr 310fr 15fr; /** Spacing, first-button, vertical-buttons, second-button, spacing*/
+    grid-template-areas: 
+    ". . name . . "
+    ". media media media . "
+    ". about-me skills contact ."
+    ". about-me projects contact . "
+    ". . . . ."
+    ;
+    gap: 30px 30px;
+
+}
+@media screen and (max-width: 850px) {
+    #home{
+        display: grid !important;
+        grid-template-rows: 176fr 60fr 120fr 120fr 40fr !important;
+        grid-template-columns: .01fr 1fr 1fr .01fr !important;
+        grid-template-areas: 
+        ". name name. "
+        ". media media ."
+        ". about-me skills ."
+        ". projects contact ."
+        ". . . ."
+        !important;
+        gap: 30px 30px !important;
+    }
+}
+
+
+#my-name{
+    grid-area: name;
+    /*background-color: #FF5964;*/
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    align-self: center;
+    justify-self: center;
+    margin-top: 40px;
+}
+
+.name{
+    font-size: 6vh;
+    user-select: none;
+}
+
+#henry{
+    align-self: flex-start;
+}
+
+
+#underscore{
+    height: 0.5vh;
+    background-color: white;
+
+}
+
+#white{
+    align-self: flex-end;
+}
+
+#media{
+    grid-area: media;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:center;
+}
+
+.media-button{
+    aspect-ratio: 1/1;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .2s all;
+    width: auto;
+    height: 75%;
+}
+
+/*TODO: Consider making this a javascript class instead of an on_hover animation, so that the animation can continue even after person stops hovering*/
+
+@keyframes rotateIcon{ 
+
+    20%{
+        transform: rotate(15deg);
+    }
+
+    60%{
+        transform: rotate(-7.5deg);
+    }
+    80%{
+        transform: rotate(3deg);
+    }
+    100%{
+        transform: rotate(0deg);
+    }
+}
+.media-icon{
+    width: 75%;
+    user-select: none;
+}
+
+.media-button:hover{
+    cursor: pointer;
+    filter: brightness(120%);
+}
+
+.media-button:hover .media-icon{
+    animation-name: rotateIcon;
+    animation-duration: 1s;
+    animation-direction: normal;
+}
+
+#discord{
+    background-color: #5865F2;
+}
+
+#instagram{
+   background: #E1306C;
+   margin-left: 40px;
+   margin-right: 40px;
+}
+
+#github{
+    background: white;
+}
+#github:hover{
+    filter:brightness(90%);
+}
+
+.section-button{
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    justify-self: center;
+    transition: .5s;
+    box-sizing: border-box;
+    margin-left: 10px;
+    margin-right: 10px;
+    
+}
+
+.section-button:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+    
+}
+
+
+/**Section Buttons*/
+
+#about-me-button{
+    grid-area: about-me;
+    background: var(--yellow);
+}
+
+#about-me-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+}
+
+
+#portrait{
+    width: 80%;
+    transition: .5s all ease;
+}
+
+@media screen and (max-width: 850px){
+    #portrait{
+        width: 70%;
+        max-height: 12vh;
+    }
+}
+
+#hand{
+    transition: .5s all ease;
+    transform: translateY(10px);
+}
+
+.wave{
+    transform: translateY(0px) !important;
+}
+
+#skills-button{
+    grid-area: skills;
+    background: var(--green);
+}
+
+#projects-button{
+    grid-area: projects;
+    background: var(--red);
+}
+
+#contact-button{
+    grid-area: contact;
+    background: var(--blue);
+}
+
+#contact-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+#envelope-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+#envelope{
+    margin-bottom: 20px;
+    width: 80%;
+    max-height: 24vh;
+}
+
+@media screen and (max-width: 850px){
+    #envelope{
+        width: 50%;
+        max-height: 12vh;
+    }
+}
+
+#envelope-letter{
+    transition: all .5s ease;
+}
+
+.envelope-raised{
+    transform: translateY(-50px);
+}
+
+
+/**About Me Section*/
+
+
+
+
+@keyframes circle-rotate {
+    0%{
+        transform: rotate(0deg);
+        
+    }
+
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes alternate-rotate{
+    0%{
+        transform: rotate(10deg);
+    }
+    50%{
+        transform: rotate(-45deg);
+    }
+    100%{
+        transform: rotate(10deg);
+    }
+}
+
+@keyframes reverse-alternate-rotate{
+    0%{
+        transform: rotate(10deg);
+    }
+    50%{
+        transform: rotate(65deg);
+    }
+    100%{
+        transform: rotate(10deg);
+    }
+}
+
+#about-me-blurb{
+    background-color: var(--yellow);
+    width: 70%;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    border-radius: 50px;
+    position: relative;
+    top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#about-me-blurb h1{
+    font-size: 4vw;
+}
+
+#about-me-blurb p{
+    font-size: 3vw;
+}
+
+#about-me-graphic{
+    width: 70%;
+    height: 25vh;
+    height: max-content;
+    margin-bottom: 50px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "science-image gym-image""philosophy-image computer-image";
+    margin-top: 50px;
+}
+
+.about-me-image img{
+    width: 70%;
+}
+
+@media screen and (min-width: 850px){
+    #about-me{
+        display: grid;
+        grid-template-rows: 10fr 80fr 10fr;
+        grid-template-columns: 3fr 48fr 3fr 40fr 3fr;
+        grid-template-areas:
+        ". . . . ."
+        ". about-me-blurb . about-me-graphic ."
+        ". . . . ."
+        ;
+    }
+    #about-me-blurb{
+        grid-area: about-me-blurb;
+        width: 100%;
+        height: min-content;
+        border-radius: 50px;
+        padding-bottom: 30px;
+        background-color: var(--yellow);
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 10px;
+        box-sizing: border-box;
+    }
+    
+    #about-me-graphic{
+        grid-area: about-me-graphic;
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas: "science-image gym-image""philosophy-image computer-image"
+    }
+    #about-me-blurb p{
+        font-size: 2.2vw;
+    }
+    #about-me-blurb h1{
+        font-size: 3vw;
+    }
+    .about-me-image img{
+        width: 70%;
+        height: auto;
+  
+    }
+
+    .about-me-image{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+    #science-image{
+        align-items: flex-end;
+        justify-content: flex-end;
+    }
+    #science-image img{
+        transform-origin: 50% 50%;
+        animation: 7s circle-rotate forwards infinite linear;
+    }
+    #philosophy-image img{
+        transform-origin: center center;
+        animation: 10s circle-rotate forwards infinite linear reverse;
+    }
+    #computer-image{
+        align-items: flex-start;
+    }
+
+    #computer-image img{
+        animation: alternate-rotate alternate-reverse 6s infinite cubic-bezier(0.44, 0, 0.45, 0.99); 
+    }
+
+    #gym-image img{
+        animation: reverse-alternate-rotate 6s infinite cubic-bezier(0.44, 0, 0.45, 0.99);
+    }
+}
+
+
+/**Projects Section*/
+
+#projects{
+    display: grid;
+    grid-template-rows: 90fr 211fr 20fr 211fr 40fr;
+    grid-template-columns: 50fr 900fr 50fr;
+    grid-template-areas:
+    ". projects-title ."
+    ". scouting-project ."
+    ". . ."
+    ". oncall-project ."
+    ". . .";
+}
+
+#projects-title{
+    grid-area: projects-title;
+}
+
+#scouting-project{
+    grid-area: scouting-project;
+}
+
+#oncall-project{
+    grid-area: oncall-project;
+
+}
+
+.project{
+    background-color: var(--red);
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    transition: .5s all ease;
+    padding: 10px;
+}
+
+.project:hover{
+    cursor: pointer;
+    transform: scale(1.03)
+}
+
+.project-header{
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-right: 30px;
+}
+
+.project-header h1{
+    padding-left: 10px;
+} 
+
+.project-header img{
+    height: 100%;
+    max-height: 120px;
+}
+.project-description{
+    width: 100%;
+    height: 60%;
+    text-align: left;
+    line-height: 1.5;
+}
+
+.learn-more{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.learn-more h2{
+    padding-right: 20px;
+}
+@media screen and (min-width: 850px){
+    #projects{
+        display: grid;
+        grid-template-rows: 87fr 442fr 40fr;
+        grid-template-columns: 30fr 450fr 40fr 450fr 30fr;
+        grid-template-areas: 
+        ". projects-title projects-title projects-title ."
+        ". scouting-project . oncall-project ."
+        ". . . . .";
+    }
+    .project-description{
+        font-size: 16px
+    }
+    .project{
+        height: min-content;
+    }
+}
+
+
+
+/**Contact Section*/
+
+#contact{
+    display: flex;
+    flex-direction: row;
+}
+
+
+#contact-blurb{
+    width: 30vw;
+    height: auto;
+    background: var(--blue);
+    margin-left: 40px;
+    margin-top: 40px;
+    border-radius: 50px;
+    align-self: flex-start;
+    text-align: left;
+    color: black;
+    padding: 20px;
+    font-size: 2vw;
+}
+
+#email-form input{
+    border-radius: 30px;
+    background: white;
+    color: black;
+}
+
+
+
+
+
+
+
+
+
+
+::-webkit-scrollbar{
+    display: none;
+}
+
+#scrollbar{
+    width: 2vw;
+    transition: 0.5s all;
+}
+
+#scrollbar-tab{
+    background-color: white;
+    width: 100%;
+    display: inline-block;
+}
