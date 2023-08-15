@@ -10,7 +10,7 @@
 
 @font-face {
     font-family: signika-negative;
-    src: url(/fonts/Signika-Regular.ttf);
+    src: url(fonts/Signika-Regular.ttf);
 }
 
 *{
@@ -22,8 +22,9 @@ html, body{
     margin: 0;
     padding: 0;
     background-color: #1B1B1F;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 button{
@@ -51,6 +52,7 @@ button{
 }
 .noselect{
     user-select: none;
+    text-align: center;
 }
 
 
@@ -60,6 +62,7 @@ button{
     display: flex;
     flex-direction: column;
     display: block;
+    overflow: hidden;
 }
 
 .break{
@@ -74,9 +77,9 @@ button{
     grid-template-columns: 15fr 310fr 350fr 310fr 15fr; /** Spacing, first-button, vertical-buttons, second-button, spacing*/
     grid-template-areas: 
     ". . name . . "
-    ". media media media . "
+    ". media media media ."
     ". about-me skills contact ."
-    ". about-me projects contact . "
+    ". about-me projects contact ."
     ". . . . ."
     ;
     gap: 30px 30px;
@@ -233,12 +236,14 @@ button{
     justify-content: space-between;
     height: 100%;
     width: 100%;
+    overflow: hidden;
 }
 
 
 #portrait{
     width: 80%;
     transition: .5s all ease;
+    transform: translateY(2px);
 }
 
 @media screen and (max-width: 850px){
@@ -253,18 +258,99 @@ button{
     transform: translateY(10px);
 }
 
-.wave{
-    transform: translateY(0px) !important;
+#about-me-button:hover > div svg g #hand{
+    transform: translateY(1px) !important;
 }
 
 #skills-button{
     grid-area: skills;
     background: var(--green);
+    text-align: center;
 }
 
+#hammer{
+    transition: all .5s ease;
+    transform-origin: 50% 100%;
+}
+
+#screwdriver{
+    transition: all .5s ease;
+    transform-origin: 50% 100%;
+}
+#wrench{
+    transition: all .5s ease;
+    transform-origin: 50% 100%;
+}
+
+#skills-button:hover > #skills-container svg g #hammer{
+    transform: rotate(-5deg);
+}
+
+#skills-button:hover > #skills-container svg g #screwdriver{
+    transform: rotate(-2deg);
+}
+
+#skills-button:hover > #skills-container svg g #wrench{
+    transform: rotate(5deg) translateY(10px);
+}
+
+#skills-container{
+    width: 100%;
+    height: 100%;
+}
+
+#toolbox{
+    width: 50%;
+    max-height: 12vh;
+    height: min-content;
+    shape-rendering: crisp-edges;
+}
+
+@media screen and (min-width: 850px) {
+    #toolbox{
+        max-height: 12vh;
+    }
+}
+
+@keyframes gear1 {
+    100%{
+        transform: rotate(360deg);
+    }
+}
 #projects-button{
     grid-area: projects;
     background: var(--red);
+}
+
+#projects-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#projects-container .noselect{
+    margin-bottom: 10px;
+}
+#gears{
+    height: 100%;
+    max-height: 12vh;
+    width: min-content;
+}
+
+
+#projects-button:hover > div svg #gear1{
+    transform-origin: 31.7025% 34.41625%;
+    animation: infinite gear1 3s linear;
+}
+#projects-button:hover > div svg #gear2{
+    transform-origin: 69.58% 74.18%;
+    animation: infinite gear1 3s linear reverse;
+}
+#projects-button:hover > div svg #gear3{
+    transform-origin: 82.228125% 34.40875%;
+    animation: infinite gear1 3s linear;
 }
 
 #contact-button{
@@ -306,15 +392,11 @@ button{
     transition: all .5s ease;
 }
 
-.envelope-raised{
+#contact-button:hover div div svg g #envelope-letter{
     transform: translateY(-50px);
 }
 
-
 /**About Me Section*/
-
-
-
 
 @keyframes circle-rotate {
     0%{
@@ -351,6 +433,11 @@ button{
     }
 }
 
+#about-me{
+    height: max-content;
+    padding-bottom: 50px;
+}
+
 #about-me-blurb{
     background-color: var(--yellow);
     width: 70%;
@@ -377,7 +464,8 @@ button{
     width: 70%;
     height: 25vh;
     height: max-content;
-    margin-bottom: 50px;
+    padding-top: 50px;
+    padding-bottom: 100px;
     position: relative;
     margin-left: auto;
     margin-right: auto;
@@ -385,7 +473,9 @@ button{
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas: "science-image gym-image""philosophy-image computer-image";
-    margin-top: 50px;
+    overflow: visible;
+    box-sizing: border-box;
+    
 }
 
 .about-me-image{
@@ -394,9 +484,11 @@ button{
     justify-content: center;
     align-items: center;
     padding: 10px;
+    overflow: visible;
 }
 .about-me-image img{
     width: 70%;
+    overflow: visible;
 }
 
 #science-image{
@@ -416,7 +508,7 @@ button{
 
 #gym-image img{
     animation: reverse-alternate-rotate 6s infinite cubic-bezier(0.44, 0, 0.45, 0.99);
-    animation-delay: 1s;
+    animation-delay: 1s ;
 }
 
 #philosophy-image{
@@ -436,20 +528,19 @@ button{
     animation: alternate-rotate alternate-reverse 6s infinite cubic-bezier(0.44, 0, 0.45, 0.99); 
 }
 
-@media screen and (min-width: 850px){
-    #about-me{
-        display: grid;
-        grid-template-rows: 10fr 80fr 10fr;
-        grid-template-columns: 3fr 48fr 3fr 40fr 3fr;
-        grid-template-areas:
-        ". . . . ."
-        ". about-me-blurb . about-me-graphic ."
-        ". . . . ."
-        ;
+@media screen and (min-width: 720px){
+    #about-me-wrapper{
+        display: flex;
+        flex-direction: row;
+        justify-content:center;
+        align-items: center;
+        width: 100vw;
     }
+
     #about-me-blurb{
         grid-area: about-me-blurb;
         width: 100%;
+        max-height: 600px;
         height: min-content;
         border-radius: 50px;
         padding-bottom: 30px;
@@ -458,19 +549,27 @@ button{
         padding-right: 20px;
         padding-top: 10px;
         box-sizing: border-box;
+        margin-right: 0;
+        margin-left: 30px;
     }
     
     #about-me-graphic{
         grid-area: about-me-graphic;
         width: 100%;
         height: 100%;
+        margin-left: 50px;
+        margin-right: 0;
+        padding-top: 0;
+        padding-bottom: 0;
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr;
-        grid-template-areas: "science-image gym-image""philosophy-image computer-image"
+        grid-template-areas: "science-image gym-image""philosophy-image computer-image";
+        
     }
     #about-me-blurb p{
         font-size: 2.2vw;
+        
     }
     #about-me-blurb h1{
         font-size: 3vw;
@@ -478,6 +577,7 @@ button{
     .about-me-image img{
         width: 70%;
         height: auto;
+        
   
     }
 
@@ -497,11 +597,138 @@ button{
     }
 
 }
+@media screen and (min-width: 1200px){
+    #about-me-blurb{
+        width: 650px !important;
+        height: 600px !important;
+    }
 
+    #about-me-blurb h1{
+        font-size: 39px !important;
+    }
 
+    #about-me-blurb p{
+        font-size: 28px !important;
+    }
+
+    #about-me-graphic{
+        max-height: 650px;
+        max-width: 470px;
+    }
+}
+
+/**Skills Section*/
+
+#skills{
+    height: auto;
+}
+
+#skills-blurb{
+    width: 70vw;
+    height: auto;
+
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px 10px 5px 10px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+
+    border-radius: 30px;
+    font-size: 4vw;
+    background-color: var(--green);
+}
+
+#skills-icons{
+    width: 60%;
+
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    text-align: center;
+}
+
+.skills-icon{
+    width: 20%;
+    margin: 10px 10px 10px 10px;
+    aspect-ratio: 1/1;
+    perspective: 1000px;
+}
+
+.skills-icon:hover{
+    cursor: pointer;
+}
+
+.skills-icon-wrapper{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: .8s transform;
+    transform-style: preserve-3d;
+}
+
+.skills-icon-front, .skills-icon-back{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.skills-icon-front img{
+    width: 100%;
+}
+
+.skills-icon-back{
+    transform: rotateY(180deg);
+    color: black;
+    font-size: 1.8vw;
+    background-color: #6BF178;
+}
+
+#skills-icon-figma{
+    aspect-ratio: 1/1;
+}
+
+@media screen and (min-width: 720px){
+    #skills{
+        margin-top: 50px;
+    }
+    #skills-blurb{
+        padding-left: 30px;
+        padding-right: 30px;
+        
+    }
+    .skills-icon{
+        width: 12vw;
+    }
+
+    .skills-icon-back{
+        font-size: 1vw;
+    }
+}
+
+@media screen and (min-width: 1000px){
+    #skills-blurb{
+        width: 650px;
+        font-size: 40px;
+    }
+    
+}
 /**Projects Section*/
 
-#projects{
+/*#projects{
     display: grid;
     grid-template-rows: 90fr 211fr 20fr 211fr 40fr;
     grid-template-columns: 50fr 900fr 50fr;
@@ -512,8 +739,13 @@ button{
     ". oncall-project ."
     ". . .";
     height: auto;
-}
+}*/
 
+#projects{
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
 #projects-title{
     grid-area: projects-title;
 }
@@ -527,13 +759,23 @@ button{
 
 }
 
-.project{
+/* .project{
     background-color: var(--red);
     width: 100%;
     height: 100%;
     border-radius: 50px;
     transition: .5s all ease;
     padding: 10px;
+} */
+.project{
+    background-color: var(--red);
+    width: 90%;
+    height: auto;
+    border-radius: 50px;
+    transition: .5s all ease;
+    padding: 10px;
+    position: relative;
+    margin-top: 30px;
 }
 
 .project:hover{
@@ -565,7 +807,9 @@ button{
     text-align: left;
     line-height: 1.5;
 }
-
+.project-description p{
+    font-size: 3vw;
+}
 .learn-more{
     width: 100%;
     display: flex;
@@ -585,8 +829,8 @@ button{
         ". scouting-project . oncall-project ."
         ". . . . .";
     }
-    .project-description{
-        font-size: 16px
+    .project-description p{
+        font-size: 22px !important;
     }
     .project{
         height: min-content;
@@ -598,51 +842,165 @@ button{
 /**Contact Section*/
 
 #contact{
+    width: 100%;
+    height: auto;
+    padding-top: 50px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#contact-box{
+    margin: 20px;
+    height: auto;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+
+    padding: 20px;
+    border-radius: 50px;
+    background-color: var(--blue);
+}
+
+#contact-form .input{
+    width: 50%;
+    height: 25px;
+
+    padding-left: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+
+    background-color: white;
+    font-size: 16px;
+    border: 1px solid gray;
+    border-radius: 50px;    
+}
+
+#contact-form #contact-message{
+    height: 100px;
+    width: 70%;
+    box-sizing: border-box;
+
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+
+    font-size: 16px;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+
+#contact-message:focus{
+    outline: none;
+}
+
+#contact-form input:focus{
+    outline: none;
+}
+
+#contact-button-wrapper{
+    width: 100%;
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative
 }
 
+#contact-submit{
+    width: 200px;
+    height: 75px;
 
-#contact-blurb{
-    width: 30vw;
-    height: auto;
-    background: var(--blue);
-    margin-left: 40px;
-    margin-top: 40px;
-    border-radius: 50px;
-    align-self: flex-start;
-    text-align: left;
+    margin-top: 50px;
+
+    font-size: 25px;
+    border-radius: 20px;
+    background-color: rgb(4,170,109);
     color: black;
-    padding: 20px;
-    font-size: 2vw;
+    border: none;
+    transition: .1s all;
+    position: relative;
 }
 
-#email-form input{
-    border-radius: 30px;
-    background: white;
-    color: black;
+#contact-button-wrapper::before{
+    content: "";
+    width: 200px;
+    height: 75px;
+
+    margin-top: 50px;
+
+    border-radius: 20px;
+    background-color: rgb(2, 105, 67);
+    border: none;
+    position: absolute;
+
+    transform: translateX(5px) translateY(5px);
+}
+
+#contact-submit:active{
+    transform: translateX(5px) translateY(5px);
+    box-shadow: none;
 }
 
 
+@media screen and (min-width: 600px){
+    #contact-blurb{
+        font-size: 24px;
+    }
 
+    #contact-form .input{
+        height: 35px;
+    }
 
+    #contact-form label{
+        font-size: 24px;
+    }
 
-
-
-
-
-
-::-webkit-scrollbar{
-    display: none;
 }
 
-#scrollbar{
-    width: 2vw;
-    transition: 0.5s all;
+@media screen and (min-width: 850px) {
+    #contact-box{
+        width: 60%;
+
+        flex-direction: row;
+    }
+
+    #contact-blurb{
+        width: 50%;
+        padding-right: 50px;
+    }
+
+    #contact-blurb h2{
+        font-size: 3vw;
+    }
+
+    #contact-blurb p{
+        font-size: 2vw;
+    }
+
+    #contact-form{
+        width: 50%;
+        margin-top: 20px;
+    }
+
+    #contact-form label{
+        font-size: 1.8vw;
+    }
+ 
+    #contact-form .input{
+        height: 2.2vw;
+        font-size: 1.3vw;
+    }
+    #contact-button-wrapper{
+        justify-content: start;
+
+    }
 }
 
-#scrollbar-tab{
-    background-color: white;
-    width: 100%;
-    display: inline-block;
+
+/**OTHER*/
+
+#footer{
+    height: 30vh;
 }

@@ -2,78 +2,26 @@ let isScrolling
 const website = document.getElementById("website")
 const scrollbar = document.getElementById("scrollbar-tab")
 
+window.onload = function(){
+    let icons = document.getElementsByClassName("skills-icon")
 
-function aboutmeButtonHover(event){
-    document.getElementById("hand").classList.add("wave");
-}
-
-function aboutmeButtonLeave(event){
-    document.getElementById("hand").classList.remove("wave");
-}
-
-function contactButtonHover(event){
-    document.getElementById("envelope-letter").classList.add("envelope-raised")
-}
-
-function contactButtonLeave(event){
-    document.getElementById("envelope-letter").classList.remove("envelope-raised")
-}
-
-
-
-
-
-
-
-
-scrollbar.style.height = getScrollbarHeight()
-
-website.addEventListener("scroll", (event)=>{
-    isScrolling = true;
-})
-
-
-
-setInterval(handleScroll, 10)
-
-
-function handleScroll(){
-    if (isScrolling){
-        isScrolling = false;
-        scrollbar.style.height =  getScrollbarHeight()
-
-
-        //switch (parseInt(scrollbar.style.height) / window.innerHeight){
-        switch (getScrollbarRange()){
-            case 0.2:
-                scrollbar.style.background = "var(--white)"
-            case 0.4:
-                scrollbar.style.background = "var(--yellow)"
-            case 0.6:
-                scrollbar.style.background = "var(--green)"
-            case 0.8:
-                scrollbar.style.background = "var(--red)"
-            case 1:
-                scrollbar.style.background = "var(--blue)"
-        }
-        
+    for (let i=0; i < icons.length; i++){
+        icons[i].addEventListener("click", () => {
+            if (icons[i].querySelector(".skills-icon-wrapper").style.transform == "rotateY(180deg)"){
+                icons[i].querySelector(".skills-icon-wrapper").style.transform = "rotateY(0deg)"
+            }
+            else{
+                icons[i].querySelector(".skills-icon-wrapper").style.transform = "rotateY(180deg)"
+            }
+        })
     }
-    
 }
 
-function getScrollbarHeight(){
-    return ((website.scrollTop+window.innerHeight)/getTotalScreenSize())*window.innerHeight + "px"
-}
+document.getElementById("contact-form").addEventListener("submit", submitForm)
 
-function getTotalScreenSize(){
-    let total = 0
-    website.childNodes.forEach((node)=>{
-        
-        total += node.clientHeight | 0
-    })
-    return total
-}
-
-function getScrollbarRange(){
-    
+function submitForm(event){
+    event.preventDefault()
+    let url = "mailto:212whiteh@gmail.com?subject="+document.getElementById("contact-name").value + "&body="+document.getElementById("contact-message").value
+    console.log(url)
+    window.open(url)
 }
