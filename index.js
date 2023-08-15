@@ -21,7 +21,7 @@ document.getElementById("contact-form").addEventListener("submit", submitForm)
 
 function submitForm(event){
     event.preventDefault()
-    let url = "mailto:212whiteh@gmail.com?subject="+document.getElementById("contact-name").value + "&body="+document.getElementById("contact-message").value
+    let url = "mailto:212whiteh@gmail.com?subject="+encodeURIComponent(document.getElementById("contact-name").value) + "&body="+encodeURIComponent(document.getElementById("contact-message").value)
     console.log(url)
     window.open(url)
 }
