@@ -661,6 +661,7 @@ button{
 
 .skills-icon{
     width: 20%;
+    max-width: 150px;
     margin: 10px 10px 10px 10px;
     aspect-ratio: 1/1;
     perspective: 1000px;
