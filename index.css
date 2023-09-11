@@ -338,6 +338,12 @@ button{
     max-height: 12vh;
     width: auto;
 }
+@media screen and (min-width: 850px){
+    #gears{
+        padding-bottom: 10px;
+        box-sizing: border-box;
+    }
+}
 
 
 #projects-button:hover > div svg #gear1{
