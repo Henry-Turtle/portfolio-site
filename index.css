@@ -336,7 +336,7 @@ button{
 #gears{
     height: 100%;
     max-height: 12vh;
-    width: min-content;
+    width: auto;
 }
 
 
