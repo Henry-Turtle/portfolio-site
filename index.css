@@ -758,12 +758,13 @@ button{
 }
 
 #scouting-project{
-    grid-area: scouting-project;
+    grid-area: project-1;
 }
-
+/*
 #oncall-project{
     grid-area: project-2;
 }
+    */
 #tetris-project{
     grid-area: project-2
 }
@@ -842,7 +843,7 @@ button{
         grid-template-columns: 30fr 450fr 40fr 450fr 30fr;
         grid-template-areas: 
         ". projects-title projects-title projects-title ."
-        ". scouting-project . project-2 ."
+        ". project-1 . project-2 ."
         ". . . . .";
     }
     .project-description p{
