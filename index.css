@@ -138,7 +138,7 @@ button{
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content:center;
+    justify-content: center;
 }
 
 .media-button{
@@ -150,6 +150,8 @@ button{
     transition: .2s all;
     width: auto;
     height: 75%;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 /*TODO: Consider making this a javascript class instead of an on_hover animation, so that the animation can continue even after person stops hovering*/
@@ -192,12 +194,16 @@ button{
 
 #instagram{
    background: #E1306C;
-   margin-left: 40px;
-   margin-right: 40px;
+   /*margin-left: 40px;
+   margin-right: 40px;*//
 }
 
 #github{
     background: white;
+}
+
+#resume{
+    background: #26aa71
 }
 #github:hover{
     filter:brightness(90%);
